@@ -48,7 +48,7 @@ def detect(net, img, device):
             box = decode(loc, priors, variances)
             x1, y1, x2, y2 = box[0] * 1.0
             #TTTTTTTTTTTTTTTT
-            cv2.rectangle(imgshow,(int(x1),int(y1)),(int(x2),int(y2)),(0,0,255),1)
+            cv2.rectangle(imgs,(int(x1),int(y1)),(int(x2),int(y2)),(0,0,255),1)
             bboxlist.append([x1, y1, x2, y2, score])
     bboxlist = np.array(bboxlist)
     if 0 == len(bboxlist):
@@ -87,7 +87,7 @@ def batch_detect(net, imgs, device):
             box = batch_decode(loc, priors, variances)
             box = box[:, 0] * 1.0
             #TTTTTTTTTTTTTTTT
-            cv2.rectangle(imgshow,(int(x1),int(y1)),(int(x2),int(y2)),(0,0,255),1)
+            cv2.rectangle(imgs,(int(x1),int(y1)),(int(x2),int(y2)),(0,0,255),1)
             bboxlist.append(torch.cat([box, score.unsqueeze(1)], 1).cpu().numpy())
     bboxlist = np.array(bboxlist)
     if 0 == len(bboxlist):
